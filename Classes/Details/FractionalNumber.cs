@@ -23,7 +23,8 @@ namespace Classes.Details
 
         public bool Equals(FractionalNumber other)
         {
-            return GetHashCode() == other.GetHashCode();
+            return IntegerPart == other.IntegerPart 
+                   && Math.Abs(FractionPart - other.FractionPart) < 0.001;
         }
 
         public override bool Equals(object obj)
@@ -34,8 +35,7 @@ namespace Classes.Details
             }
 
             var fractionalNumber = (FractionalNumber) obj;
-            return IntegerPart == fractionalNumber.IntegerPart 
-                   && Math.Abs(FractionPart - fractionalNumber.FractionPart) < 0.001;
+            return Equals(fractionalNumber);
         }
 
         public override int GetHashCode()
